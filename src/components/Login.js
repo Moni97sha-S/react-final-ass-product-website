@@ -24,12 +24,12 @@ function Login() {
   }, [username, password]);
 
   const nameHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUsername(e.target.value);
     setShow(false);
   };
   const passwordHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setPassword(e.target.value);
     setShow(false);
   };
@@ -49,7 +49,7 @@ function Login() {
         );
         localStorage.setItem(
           "dashboardPage",
-          JSON.stringify(response.data.dashboardPage)
+          JSON.stringify(response.data.dasbhoardPage)
         );
         localStorage.setItem(
           "productsPage",
@@ -68,17 +68,24 @@ function Login() {
       }
     };
     getData();
+    // let accountsPage = JSON.parse(localStorage.getItem("accountsPage"));
   }, []);
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    if (username === password && username !== "" && password !== "") {
-      setShow(false);
+
+    let accountsPage = JSON.parse(localStorage.getItem("accountsPage"));
+    const validEmail = accountsPage.Admin.email;
+    const validPassword = accountsPage.Admin.password;
+
+    if (validEmail == username && validPassword == password) {
+      setShow(true);
       localStorage.setItem("loginStatus", true);
       navigate("/dashboard");
       console.log("login");
     } else {
-      setShow(true);
+      alert("email and password not correct");
+      setShow(false);
       console.log(username, password);
       setUsername("");
       setPassword("");

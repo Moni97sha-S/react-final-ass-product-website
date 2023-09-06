@@ -12,13 +12,21 @@ function Dashboard() {
   let localPerformance = JSON.parse(localStorage.getItem("dashboardPage"))[
     "storage"
   ];
+
+  // console.log(localPerformance);
+
+  // const localPerformance = {
+  //   available: 40,
+  //   system: 20,
+  //   used: 40,
+  // };
+
   const [userData, setUserData] = useState({
     labels: [
       `Available (${localPerformance.available}GB)`,
       `System (${localPerformance.system}GB)`,
       `Used (${localPerformance.used}GB)`,
     ],
-
     datasets: [
       {
         data: [
@@ -26,12 +34,13 @@ function Dashboard() {
           localPerformance.system,
           localPerformance.used,
         ],
-
         backgroundColor: ["#f7604c", "#a8d582", "#4ed6b8"],
         fontColor: "#fff",
       },
     ],
   });
+  // return <h1>llll</h1>;
+
   return (
     <>
       <Header />
@@ -44,21 +53,20 @@ function Dashboard() {
             <HorizontalChart />
           </div>
         </div>
-
         <div className="flexdiv">
           <div>
             <PieChart chartData={userData} />
           </div>
           <div>
             <NotificationList />
-          </div>
+          </div>{" "}
         </div>
-        <OrdersList />
+        {/* <OrdersList /> */}
       </div>
-      {/* <div>
-        <h1>DASHBOARD</h1>
-        <button onClick={handleClick}></button>
-      </div> */}
+      <div>
+        {/* <h1>DASHBOARD</h1> */}
+        {/* <button onClick={handleClick}></button> */}
+      </div>
       <Footer />
     </>
   );
